@@ -1,0 +1,11 @@
+# 此为注释 – 将被 Git 忽略
+
+# Build Artifacts
+bin/
+
+
+*.iml
+
+
+obj/
+*.csproj
