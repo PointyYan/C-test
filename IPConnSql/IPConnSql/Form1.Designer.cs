@@ -114,6 +114,7 @@
             // 
             this.txtPwd.Location = new System.Drawing.Point(95, 115);
             this.txtPwd.Name = "txtPwd";
+            this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(210, 21);
             this.txtPwd.TabIndex = 9;
             this.txtPwd.TextChanged += new System.EventHandler(this.txtPwd_TextChanged);

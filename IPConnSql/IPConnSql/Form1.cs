@@ -51,9 +51,12 @@ namespace IPConnSql
             string pwd = txtPwd.Text.ToString();
             string connSql = "Server=" + ip + ";Database=" + dataBase + ";uid=" + id + ";pwd=" + pwd;
 
-            //           MessageBox.Show(connSql);
+ //                      MessageBox.Show(connSql);
 
             SqlConnection conn = new SqlConnection(connSql);
+
+            SqlCommand sqlCommand = conn.CreateCommand();
+            sqlCommand.CommandTimeout = 10;
 
             try{
                 conn.Open();
@@ -71,6 +74,10 @@ namespace IPConnSql
             catch
             {
                 MessageBox.Show("断开链接失败。");
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     
