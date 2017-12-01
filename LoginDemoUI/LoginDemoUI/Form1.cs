@@ -36,9 +36,10 @@ namespace LoginDemoUI
 
         }
 
+        /*
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
             string userName = txtUserName.Text.Trim();
             string password = txtPassword.Text;
             BLL.BLL mgr = new BLL.BLL();
@@ -46,21 +47,24 @@ namespace LoginDemoUI
 
   
             MessageBox.Show("登录用户：" + user.UserName);
+            
 
         }
+        */
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnGetAll_Click(object sender, EventArgs e)
         {
             //
             BLL.BLL bLL = new BLL.BLL();
 
-            dataGridView1.DataSource = bLL.GetListUser().Tables;
+            dataGridView1.DataSource = bLL.GetListUser().Tables[0];
             //
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            BLL.BLL bLL = new BLL.BLL();
+            dataGridView1.DataSource = bLL.GetListUser().Tables[0];
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,5 +73,17 @@ namespace LoginDemoUI
             this.userInfoTableAdapter.Fill(this.userInfoDataSet.UserInfo);
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

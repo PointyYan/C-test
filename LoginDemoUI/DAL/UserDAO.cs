@@ -57,7 +57,9 @@ namespace DAL
     
         public  DataSet GetListUser()
         {
+            /*
             string ConnString = @"Server =127.0.0.1;DataBase =UserInfo; User ID =sa ;Password =yjq9735";
+            
             using (SqlConnection conn = new SqlConnection(ConnString))
             {
                 SqlCommand cmd = conn.CreateCommand();
@@ -89,7 +91,13 @@ namespace DAL
 
                 return ds;
             }
+            */
 
-            }
+            string sql = "select * from UserInfo";
+            DataSet dataSet = new DataSet();
+            dataSet = DBHelper.ExecuteDataSet(sql);
+            return dataSet;
+
+        }
     }
 }
