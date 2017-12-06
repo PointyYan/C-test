@@ -81,9 +81,21 @@ namespace LoginDemoUI
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            UserInfo userInfo = new UserInfo();
+            userInfo.UserName = txtUserName.Text.ToString();
+            userInfo.Password = txtPassword.Text.ToString();
+            userInfo.Email = txtEmail.Text.ToString();
+            BLL.Insert(userInfo);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
 
         }
 
-        
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

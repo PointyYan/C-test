@@ -37,5 +37,13 @@ namespace BLL
 
             return dataSet;
         }
+
+        public bool Insert(UserInfo userInfo)
+        {
+            DAL.userDAO userDAO = new DAL.userDAO();
+            return userDAO.Insert(userInfo);
+        }
+
+        
     }
 }

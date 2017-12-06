@@ -9,11 +9,11 @@ using System.Data;
 
 namespace DAL
 {
-    public  class userDAO
+    public class userDAO
     {
         public Model.UserInfo SelectUser(string userName, string Password)
         {
- 
+
             string ConnString = @"Server =127.0.0.1;DataBase =UserInfo; User ID =sa ;Password =yjq9735";
             using (SqlConnection conn = new SqlConnection(ConnString))
             {
@@ -25,7 +25,7 @@ namespace DAL
 
                 cmd.CommandType = CommandType.Text;
 
-   
+
                 cmd.Parameters.Add(new SqlParameter(@"UserName", userName));
                 cmd.Parameters.Add(new SqlParameter(@"Password", Password));
 
@@ -34,14 +34,14 @@ namespace DAL
 
                 Model.UserInfo user = null;
 
-   
+
                 while (reader.Read())
                 {
                     if (user == null)
                     {
                         user = new Model.UserInfo();
                     }
-   
+
                     user.ID = reader.GetInt32(0);
                     user.UserName = reader.GetString(1);
                     user.Password = reader.GetString(2);
@@ -54,10 +54,11 @@ namespace DAL
                 return user;
             }
         }
-    
-        public  DataSet GetListUser()
+
+        public DataSet GetListUser()
         {
-            /*
+
+            /**
             string ConnString = @"Server =127.0.0.1;DataBase =UserInfo; User ID =sa ;Password =yjq9735";
             
             using (SqlConnection conn = new SqlConnection(ConnString))
@@ -93,11 +94,41 @@ namespace DAL
             }
             */
 
+            /**
+            DataTable dataTable = DBHelper.ExecuteDataTable("select * from UserInfo");
+            List<UserInfo> list = new List<UserInfo>();
+            foreach(DataRow row in dataTable.Rows)
+            {
+                list.Add((new UserInfo)
+                {
+                    ID = Convert.ToInt32(row[""])
+                });
+            }
+            */
             string sql = "select * from UserInfo";
             DataSet dataSet = new DataSet();
             dataSet = DBHelper.ExecuteDataSet(sql);
             return dataSet;
+        }
 
+        public int GetCountAllUser()
+        {
+            string sql = "select * from UserInfo";
+            int count;
+            count = (int)DBHelper.ExecuteScalar(sql);
+            return count;
+        }
+
+        public bool Insert(UserInfo userInfo)
+        {
+            String str = "insert into UserInfo (UserName,Password,Email) values(@UserName,@Password,@Email)";
+            SqlParameter[] parameter = new SqlParameter[]
+            {
+                new SqlParameter("@UserName",userInfo.UserName),
+                new SqlParameter("@Password",userInfo.Password),
+                new SqlParameter("@Email",userInfo.Email)
+            };
+            return DBHelper.ExecuteNonQuery(str,parameter)>0;
         }
     }
 }
