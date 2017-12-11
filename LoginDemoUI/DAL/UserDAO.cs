@@ -11,6 +11,7 @@ namespace DAL
 {
     public class userDAO
     {
+        /**
         public Model.UserInfo SelectUser(string userName, string Password)
         {
 
@@ -54,6 +55,7 @@ namespace DAL
                 return user;
             }
         }
+            */
 
         public DataSet GetListUser()
         {
@@ -111,6 +113,7 @@ namespace DAL
             return dataSet;
         }
 
+        //得到所有人的总数量
         public int GetCountAllUser()
         {
             string sql = "select * from UserInfo";
@@ -119,7 +122,8 @@ namespace DAL
             return count;
         }
 
-        public bool Insert(UserInfo userInfo)
+        //添加
+        public void Insert(UserInfo userInfo)
         {
             String str = "insert into UserInfo (UserName,Password,Email) values(@UserName,@Password,@Email)";
             SqlParameter[] parameter = new SqlParameter[]
@@ -128,7 +132,49 @@ namespace DAL
                 new SqlParameter("@Password",userInfo.Password),
                 new SqlParameter("@Email",userInfo.Email)
             };
-            return DBHelper.ExecuteNonQuery(str,parameter)>0;
+            DBHelper.ExecuteNonQuery(str,parameter);
+        }
+
+        //更新
+        public void Update(UserInfo userInfo)
+        {
+            String str = "update UserInfo set UserName=@UserName,Password=@Password,Email=@Email where ID = @ID";
+            SqlParameter[] parameter = new SqlParameter[]
+            {
+                new SqlParameter("@UserName",userInfo.UserName),
+                new SqlParameter("@Password",userInfo.Password),
+                new SqlParameter("@Email",userInfo.Email),
+                new SqlParameter("@ID",userInfo.ID)
+            };
+            DBHelper.ExecuteNonQuery(str, parameter);
+        }
+
+        //选择某一条数据
+        public DataSet Select(UserInfo userInfo)
+        {
+            String str = "select * from UserInfo where UserName=@UserName, Password=@Password, Email=@Email,ID = @ID";
+            SqlParameter[] parameter = new SqlParameter[]
+            {
+                new SqlParameter("@UserName",userInfo.UserName),
+                new SqlParameter("@Password",userInfo.Password),
+                new SqlParameter("@Email",userInfo.Email),
+                new SqlParameter("@ID",userInfo.ID)
+            };
+            DataSet dataSet = new DataSet();
+            dataSet = DBHelper.ExecuteDataSet(str,parameter);
+            return dataSet;
+        }
+
+        //删除某一条数据
+        public void Delete(UserInfo userInfo)
+        {
+            String str = "delete from UserInfo where ID=@ID";
+            SqlParameter []
+            parameter = new SqlParameter[]
+            {
+                new SqlParameter("@ID",userInfo.ID)
+            };
+            DBHelper.ExecuteNonQuery(str, parameter);
         }
     }
 }

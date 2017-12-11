@@ -45,6 +45,7 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userInfoDataSet)).BeginInit();
@@ -182,11 +183,22 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "ID:";
             // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(34, 198);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(64, 23);
+            this.btnDel.TabIndex = 14;
+            this.btnDel.Text = "Delete";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 326);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnSelect);
@@ -228,6 +240,7 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnDel;
     }
 }
 

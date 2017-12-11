@@ -63,8 +63,8 @@ namespace LoginDemoUI
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            BLL.BLL bLL = new BLL.BLL();
-            dataGridView1.DataSource = bLL.GetListUser().Tables[0];
+            //BLL.BLL bLL = new BLL.BLL();
+            //dataGridView1.DataSource = bLL.GetListUser().Tables[0];
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -79,6 +79,7 @@ namespace LoginDemoUI
 
         }
 
+        //插入数据
         private void btnInsert_Click(object sender, EventArgs e)
         {
             UserInfo userInfo = new UserInfo();
@@ -89,14 +90,48 @@ namespace LoginDemoUI
             bLL.Insert(userInfo);
         }
 
+        //更新数据
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            UserInfo userInfo = new UserInfo();
+            userInfo.ID = Convert.ToInt32(txtID.Text);
+            userInfo.UserName = txtUserName.Text.ToString();
+            userInfo.Password = txtPassword.Text.ToString();
+            userInfo.Email = txtEmail.Text.ToString();
+            BLL.BLL bLL = new BLL.BLL();
+            bLL.Update(userInfo);
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            UserInfo userInfo = new UserInfo();
+            if (txtID.Text.Trim() != String.Empty)
+            {
+                userInfo.ID = Convert.ToInt32(txtID.Text);
+            }
+            userInfo.UserName = txtUserName.Text.ToString();
+            userInfo.Password = txtPassword.Text.ToString();
+            userInfo.Email = txtEmail.Text.ToString();
+            BLL.BLL bLL = new BLL.BLL();
+            dataGridView1.DataSource = bLL.Select(userInfo).Tables[0];
+        }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text.Trim() != String.Empty)
+            {
+                UserInfo userInfo = new UserInfo();
+                userInfo.ID = Convert.ToInt32(txtID.Text);
+                //userInfo.UserName = txtUserName.Text.ToString();
+                //userInfo.Password = txtPassword.Text.ToString();
+                //userInfo.Email = txtEmail.Text.ToString();
+                BLL.BLL bLL = new BLL.BLL();
+                bLL.Delete(userInfo);
+            }
+            else
+            {
+                MessageBox.Show("必须输入ID！");
+            }
         }
     }
 }

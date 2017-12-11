@@ -80,7 +80,14 @@ namespace DAL
                 da.SelectCommand = cmd;
                 da.SelectCommand.Parameters.AddRange(sqlParameters);
                 //da.SelectCommand = cmd;
-                da.Fill(dt);
+                if (da == null)
+                {
+                    return dt;
+                }
+                else
+                {
+                    da.Fill(dt);
+                }
                 return dt;
             }
         }
